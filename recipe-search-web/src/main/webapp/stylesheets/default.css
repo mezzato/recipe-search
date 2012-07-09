@@ -1,0 +1,256 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  font: 13px "Lucida Grande", Arial, sans-serif;
+  color: #000;
+  height: 100%;
+}
+
+#nonFooter {
+    position: relative;    
+    min-height: 100%;
+}
+
+* html #nonFooter {
+    height: 100%;
+}
+
+a {
+  color: blue;
+}
+
+a:hover {
+  color: #F1AA1A;
+}
+
+h1 {
+  z-index: 1;
+  font: 2.2em "Georgia", "Times New Roman", serif;
+  color: black;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0;
+  margin-top: 0.5em;
+  position: relative;
+  padding-right: 10px;
+}
+
+h2 {
+  font: 2.0em "Georgia", "Times New Roman", serif;
+  color: black;
+  font-weight: normal;
+  margin: 0;
+  margin-top: 0.5em;
+  margin-left: 20px;
+  position: relative;
+  padding-right: 10px;
+}
+
+h3 {
+  font: 1.8em "Georgia", "Times New Roman", serif;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+  margin-top:0.5em;
+  position: relative;
+}
+
+label,input {
+    display: block;
+    float: left;
+    margin-bottom: 0.5em;
+}
+
+label {
+    text-align: right;
+    margin-right: 0.5em;
+}
+
+input {
+    border: 1px solid lightgray;
+}
+
+form br {
+    clear: left;
+}
+
+.error{
+  padding: 20px;
+  border: solid 2px gray;
+  background-color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+.errorBox{
+  color: red;
+}
+
+#header{
+  border: none;
+  background-color: #F9F9AB;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  height: 100px;
+}
+
+#logo {
+  float: left;
+}
+
+#motto {
+  float: left;
+  padding-top: 75px;
+  margin-left: -100px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#languages {
+  padding-top: 85px;
+}
+
+#footer {
+  position: relative;
+  margin-top: -3.5em;
+  /*margin-top: 50px;*/
+  border-top: solid 1px gray;
+  color: gray;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px 5px 0px 5px;
+  clear: both;
+}
+
+#validators {
+    float: left;
+    width: 20%;
+    text-align: left;
+}
+
+#copyright {
+    float: left;
+    width: 60%;
+}
+
+#references {
+    float: left;
+    width: 20%;
+    text-align: right;
+}
+
+#debug{
+  margin: 10px;
+  border: solid 4px gray;
+  background-color: white;
+  padding: 10px;
+}
+
+#language{
+    margin-right: 10px;
+    float: right;
+    text-decoration: none;
+}
+
+#language a {color: black; text-decoration:none;}
+#language a:hover {color: gray;}
+
+#log {
+  font-size: 11px;
+  padding: 5px;
+  background-color: white;
+  margin: 5px;
+  border: solid 1px gray;
+}
+
+.log_error{
+    color: red;
+     font-weight: bold;
+}
+
+.log_warn{
+    color: orange;
+    font-weight: bold;
+}
+
+.menuTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #F1CD1A;
+    margin: 20px 0 5px 0;
+    padding: 0 0 0 0;
+}
+
+.menuLevel0 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    padding: 0 0 0 0;
+}
+
+#content {
+    clear: both;
+    text-align: left;
+    width: 750px;
+    margin: 10px auto 0px auto;
+}
+
+#content_main {
+    float: left;
+    width: 578px;
+    margin: 0 20px 10px 0;
+    padding: 0 0 0 0;
+    border-right: dotted thin silver;
+}
+
+#content_main_full {
+    width: 100%;
+    margin: 0 20px 10px 0;
+    padding: 0 0 0 0;
+}
+
+#content_menu {
+    float: left;
+    width: 130px;
+    margin: 0 0 0 0px;
+    padding: 0 0 0 20px;
+}
+
+.section_title {
+    font: 30px "Georgia", "Times New Roman", serif;
+    padding: 0 10px 0 0;
+    margin: 0 0 0 0;
+    text-align: center;
+    color: darkgray;
+}
+
+.vertical_filler {
+    margin: 40px 0 0 0;
+    padding: 0 0 0 0;
+}
+
+/* Login form */
+#loginBox {
+    position: relative;
+    width: 27em;
+    margin: 20px auto 20px auto;
+    padding: 20px 20px 40px 20px;
+}
+
+.loginLabel {
+    width: 8em;
+}
+
+.loginField {
+    width: 15em;
+}
+
+#loginTitle {
+    font: 30px "Georgia", "Times New Roman", serif;
+    text-align: center;
+    color: darkgray;
+}
+
+#loginMessageBox {
+    margin: 1em;
+}

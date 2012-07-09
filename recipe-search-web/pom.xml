@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+
+	<parent>
+		<groupId>org.recipesearch</groupId>
+		<artifactId>recipe-search</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>recipe-search-web</artifactId>
+	<packaging>war</packaging>
+	<name>Parancoe Based Web Search Application</name>
+	<url>https://github.com/mezzato/recipe-search</url>
+	<build>
+		<finalName>recipe-search-web</finalName>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+					<useFile>true</useFile>
+					<forkMode>once</forkMode> <!-- pertest once or never -->
+					<!-- <reportFormat>plain</reportFormat> -->
+					<!--argLine>-Xmx512M</argLine --> <!-- don't use if you want to debug tests in NetBeans -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>parancoe-org-repository</id>
+			<name>Parancoe Repository for Maven</name>
+			<url>http://maven2.parancoe.org/repo</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+	<dependencies>
+		<!-- The Parancoe framework -->
+		<dependency>
+			<groupId>org.parancoe</groupId>
+			<artifactId>parancoe-web</artifactId>
+			<version>2.0.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Parancoe Plugins -->
+		<dependency>
+			<groupId>org.parancoe</groupId>
+			<artifactId>parancoe-plugin-springsecurity</artifactId>
+			<version>2.0.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- common db driver(s) -->
+		<!-- HSQLDB -->
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.7</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Servlet/JSP APIs provided by your container -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Only for tests of your application (if any ;) ) -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.3-603.jdbc4</version>
+		</dependency>
+	</dependencies>
+</project>

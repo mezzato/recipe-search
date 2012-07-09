@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/parancoe-search" reloadable="true">
+    <Resource
+        auth="Container"
+        name="jdbc/parancoe-searchDS"
+        type="javax.sql.DataSource"
+        driverClassName="org.postgresql.Driver"
+        password="0dm1n1str0t0r"
+        username="postgres"
+        url="jdbc:postgresql://localhost/parancoe"
+        maxActive="5"/>
+</Context>
+

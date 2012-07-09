@@ -1,0 +1,12 @@
+- &User-parancoe
+  username: parancoe
+  password: parancoe
+  enabled: true
+  authorities: 
+    - *Authority-parancoe
+- &User-admin
+  username: admin
+  password: admin
+  enabled: true
+  authorities: 
+    - *Authority-admin

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:parancoe="http://www.parancoe.org/schema/parancoe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.parancoe.org/schema/parancoe http://www.parancoe.org/schema/parancoe.xsd">
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName" value="java:comp/env/jdbc/parancoe-searchDS"/> 
+		</bean> 
+
+<!-- 
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="username" value="postgres" />
+		<property name="password" value="0dm1n1str0t0r" />
+		<property name="url" value="jdbc:postgresql://localhost/parancoe" />
+	</bean>
+	-->
+
+	<bean id="sessionFactory" parent="abstractSessionFactory">
+		<property name="hibernateProperties">
+			<props merge="true">
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry key="merge">
+					<bean
+						class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,32 @@
+<link href="${cp}/stylesheets/default.css" rel="stylesheet" type="text/css"/>
+
+<style type="text/css">
+#messageZone {
+	/* Netscape 4, IE 4.x-5.0/Win and other lesser browsers will use this */
+      position: absolute;
+      padding: 4px;
+      background-color: rgb(204, 68, 68);
+      background-image: none;
+      color: white;
+      font-size: 75%;
+      top: 1px;
+      right: 1px;
+      fontFamily: Arial,Helvetica,sans-serif;
+}
+
+body > div#messageZone {
+  /* used by Opera 5+, Netscape6+/Mozilla, Konqueror, Safari, OmniWeb 4.5+, iCab, ICEbrowser */
+  position: fixed;
+}
+</style>
+<!--[if gte IE 5.5]>
+<![if lt IE 7]>
+<style type="text/css">
+div#messageZone {
+  /* IE5.5+/Win - this is more specific than the IE 5.0 version */
+  right: expression( ( 1 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+  top: expression( ( 1 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+</style>
+<![endif]>
+<![endif]-->

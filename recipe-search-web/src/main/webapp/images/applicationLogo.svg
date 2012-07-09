@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.44.1"
+   sodipodi:docbase="/home/lucio/MyWorks/Parancoe/parancoe/parancoe-webarchetype/src/main/resources/archetype-resources/src/main/webapp/images"
+   sodipodi:docname="applicationLogo.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2418595"
+     inkscape:cx="377.19512"
+     inkscape:cy="420.63774"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1012"
+     inkscape:window-height="691"
+     inkscape:window-x="0"
+     inkscape:window-y="26" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#f9f9ab;fill-opacity:1;fill-rule:nonzero;stroke:#f9f9ab;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect12106"
+       width="250"
+       height="100"
+       x="143.33344"
+       y="529.37988"
+       inkscape:export-filename="applicationLogo.png"
+       inkscape:export-xdpi="88.235291"
+       inkscape:export-ydpi="88.235291" />
+    <g
+       id="g12057"
+       transform="matrix(0.944453,0,0,0.944453,-1.340483,-95.88617)"
+       style="stroke:#ffffd5;stroke-width:2.11762786;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="applicationLogo.png"
+       inkscape:export-xdpi="88.235291"
+       inkscape:export-ydpi="88.235291">
+      <text
+         sodipodi:linespacing="100%"
+         id="text1872"
+         y="736.83472"
+         x="278.08856"
+         style="font-size:38.47460938px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:black;fill-opacity:1;stroke:#ffffd5;stroke-width:2.11762786;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-size:38.47460938px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;stroke:#ffffd5;stroke-width:2.11762786;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:Bitstream Vera Sans"
+           y="736.83472"
+           x="278.08856"
+           id="tspan1874"
+           sodipodi:role="line">App</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text1878"
+         y="736.83472"
+         x="172.57362"
+         style="font-size:76.94921875px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#0000d1;fill-opacity:1;stroke:#ffffd5;stroke-width:2.11762786;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:URW Bookman L"
+         xml:space="preserve"><tspan
+           style="font-size:76.94921875px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#ffffd5;stroke-width:2.11762786;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:URW Bookman L"
+           y="736.83472"
+           x="172.57362"
+           id="tspan1880"
+           sodipodi:role="line">My</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:red;fill-opacity:1;stroke:none;stroke-width:1.27415085;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:Bitstream Vera Serif"
+       x="282.39807"
+       y="575.0791"
+       id="text2772"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="applicationLogo.png"
+       inkscape:export-xdpi="88.235291"
+       inkscape:export-ydpi="88.235291"><tspan
+         sodipodi:role="line"
+         id="tspan1894"
+         x="282.39807"
+         y="575.0791">with Parancoe</tspan></text>
+  </g>
+</svg>
