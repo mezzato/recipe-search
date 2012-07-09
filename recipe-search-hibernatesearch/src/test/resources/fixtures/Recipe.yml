@@ -1,0 +1,20 @@
+- &Recipe-Chicken
+  author: "Chick Corea"
+  title: "Jazzed skewer"
+  cook: *Person-chickener
+  numPages: 100
+  text: "This must be something weird in English, exotic, practical, not too complicated though, it would be a waste of time!"
+
+- &Recipe-Pork
+  author: "Piggy Bank"
+  title: "Eggs n Bacon"
+  cook: *Person-porker
+  numPages: 200
+  text: "Dieser Text ist auf Deutsch, süßer Senf und Weißwurst sind immer herzlich willkommen."
+  
+- &Recipe-Veggie
+  author: "Mr Bean"
+  title: "What an amazon eats"
+  cook: *Person-vegan
+  numPages: 300
+  text: "This is Greek with tabbing: εὐαγγέλιον"
