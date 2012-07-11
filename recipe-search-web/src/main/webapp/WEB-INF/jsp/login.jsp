@@ -24,7 +24,7 @@
                                 </font>
                             </c:if>
                         </div>
-                        <form name="loginForm" action="<c:url value='/securityCheck.secure'/>" method="POST">
+                        <form id="loginForm" action="<c:url value='/securityCheck.secure'/>" method="post">
                             <label class="loginLabel" for="username"><spring:message code="username"/></label>
                             <input id="username" class="loginField" type='text' name='j_username' tabindex="1" <c:if test="${not empty param.login_error}">value='<%= session.getAttribute(AuthenticationProcessingFilter.SPRING_SECURITY_LAST_USERNAME_KEY) %>'</c:if>/><br/>
                             <label class="loginLabel" for="password"><spring:message code="password"/></label>
