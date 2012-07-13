@@ -54,6 +54,13 @@
 		</repository>
 	</repositories>
 	<dependencies>
+
+		<dependency>
+			<groupId>${pom.groupId}</groupId>
+			<artifactId>recipe-search-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- The Parancoe framework -->
 		<dependency>
 			<groupId>org.parancoe</groupId>

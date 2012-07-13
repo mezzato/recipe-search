@@ -17,9 +17,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping({"/person/*.form", "/person/*.html"})
-@SessionAttributes(PersonController.PERSON_ATTR_NAME)
-public class PersonController {
-    public static final String PERSON_ATTR_NAME = "person";
+@SessionAttributes(RecipeController.RECIPE_ATTR_NAME)
+public class RecipeController {
+    public static final String RECIPE_ATTR_NAME = "person";
     public static final String EDIT_VIEW = "person/edit";
     public static final String LIST_VIEW = "person/list";
     @Autowired
@@ -30,13 +30,13 @@ public class PersonController {
         if (person == null) {
             throw new RuntimeException("Person not found");
         }
-        model.addAttribute(PERSON_ATTR_NAME, person);
+        model.addAttribute(RECIPE_ATTR_NAME, person);
         return EDIT_VIEW;
     }
     
     @RequestMapping
     @Validation(view=EDIT_VIEW)
-    public String save(@ModelAttribute(PERSON_ATTR_NAME) Person person,
+    public String save(@ModelAttribute(RECIPE_ATTR_NAME) Person person,
             BindingResult result, SessionStatus status) {
         personDao.store(person);
         status.setComplete();
@@ -51,7 +51,7 @@ public class PersonController {
     @RequestMapping
     public String create(Model model) {
     	 Person person = new Person();
-         model.addAttribute(PERSON_ATTR_NAME, person);
+         model.addAttribute(RECIPE_ATTR_NAME, person);
          return EDIT_VIEW;
      }
      @RequestMapping

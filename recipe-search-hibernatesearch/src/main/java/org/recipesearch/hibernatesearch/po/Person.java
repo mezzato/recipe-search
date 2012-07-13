@@ -10,41 +10,40 @@ import org.lambico.po.hibernate.EntityBase;
 @javax.persistence.Entity()
 public class Person extends EntityBase {
 
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
+	private org.recipesearch.core.po.Person person;
 
     /** Creates a new instance of Person */
     public Person() {
+    	this.person = new org.recipesearch.core.po.Person();
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.person.getFirstName();
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.person.setFirstName(firstName);
     }
 
     public String getLastName() {
-        return lastName;
+    	return this.person.getLastName();
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+    	this.person.setLastName(lastName);
     }
 
     @Temporal(TemporalType.DATE)
     public Date getBirthDate() {
-        return birthDate;
+        return this.person.getBirthDate();
     }
 
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    	this.person.setBirthDate(birthDate);
     }
 
     @Override
 	public String toString() {
-        return this.firstName + " " + this.lastName + " (" + this.birthDate + ")";
+        return this.person.toString();
     }
 }

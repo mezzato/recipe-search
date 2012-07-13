@@ -22,36 +22,33 @@ value = {
 @Indexed
 public class Recipe extends SearchableEntityBase {
 
-	private int numPages = 0;
-    private String author = null;
-    private String title = null;
-    private Person cook = null;
-    private String text = null;
+	private org.recipesearch.core.po.Recipe recipe;
+	private Person cook;
    
 
     @Field
     public String getTitle() {
-        return title;
+        return this.recipe.getTitle();
     }
 
     public void setTitle(String title) {
-        this.title = title;
+    	this.recipe.setTitle(title);
     }
     
     @Field
     public String getText() {
-		return text;
+		return this.recipe.getText();
 	}
 
 	public void setText(String text) {
-		this.text = text;
+		this.recipe.setText(text);
 	}
 
 	/**
      *
      */
     public Recipe() {
-        // TODO Auto-generated constructor stub
+    	this.recipe = new org.recipesearch.core.po.Recipe();
     }
 
     public Recipe(String author, String title) {
@@ -63,26 +60,23 @@ public class Recipe extends SearchableEntityBase {
     }
 
     public Recipe(String author, String title, String text, int numPages) {
-        this.author = author;
-        this.title = title;
-        this.text = text;
-        this.numPages = numPages;
+    	this.recipe = new org.recipesearch.core.po.Recipe(author, title, text, numPages);
     }
 
     public String getAuthor() {
-        return author;
+        return this.recipe.getAuthor();
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+    	this.recipe.setAuthor(author);
     }
 
     public int getNumPages() {
-        return numPages;
+        return this.recipe.getNumPages();
     }
 
     public void setNumPages(int numPages) {
-        this.numPages = numPages;
+    	this.recipe.setNumPages(numPages);
     }
 
     
@@ -90,7 +84,7 @@ public class Recipe extends SearchableEntityBase {
     @ManyToOne
     @Cascade(value = CascadeType.ALL)
     public Person getCook() {
-        return cook;
+        return this.cook;
     }
 
     public void setCook(Person cook) {
@@ -99,8 +93,7 @@ public class Recipe extends SearchableEntityBase {
 
     @Override
     public String toString() {
-        return "Recipe{" + "numPages=" + numPages + " ; author=" + author + " ; title=" + title + " ; cook=" +
-                cook + '}';
+        return this.recipe.toString();
     }
 
 }
