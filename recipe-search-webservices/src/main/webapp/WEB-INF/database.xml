@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        http://www.parancoe.org/schema/parancoe http://www.parancoe.org/schema/parancoe.xsd">
 
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
-		<property name="jndiName" value="java:comp/env/jdbc/parancoe-searchDS"/> 
-		</bean> 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/parancoe-searchDS" />
+	</bean> 
 
 <!-- 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

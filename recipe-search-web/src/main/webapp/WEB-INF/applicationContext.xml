@@ -10,6 +10,16 @@
        http://www.lambico.org/schema/lambico http://www.lambico.org/schema/lambico.xsd
        http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
 
+
+	<context:component-scan base-package="org.recipesearch.hibernatesearch.bo org.recipesearch.hibernatesearch.dao" />
+	<!-- Authomatic discovering of persistent classes -->
+	<lambico:discover-persistent-classes
+		basePackage="org.recipesearch.hibernatesearch.po" />
+	<!-- Authomatic DAO definition from persistent classes -->
+	<lambico:define-daos baseInterfacePackage="org.recipesearch.hibernatesearch.dao" />
+
+	<bean id="daoExceptionManager" class="org.lambico.dao.BypassingExceptionManager" />
+
     <context:component-scan base-package="org.recipesearch.core.bo"/>
     <!-- Authomatic discovering of persistent classes -->
     <lambico:discover-persistent-classes basePackage="org.recipesearch.core.po"/>
