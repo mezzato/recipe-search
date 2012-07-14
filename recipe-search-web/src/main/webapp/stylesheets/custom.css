@@ -1,0 +1,350 @@
+
+body {
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+#content {
+    line-height: 18px!important;
+}
+
+#sidebar h3 {
+    font-weight: bold;
+    color: #888888;
+}
+
+#sidebar ul {
+    list-style: circle;
+    list-style-position: inside;
+}
+
+#sidebar li {
+    font-size: 10px;
+    text-align: justify;
+}
+
+/* Link */
+
+a, a:visited {
+	color: rgb(42,71,115);
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: #f00;
+	text-decoration: none;
+}
+
+img {
+	border: 0px;
+}
+
+object, embed {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+param {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+/* Link end */
+
+/* Tables */
+
+td.left-aligned {
+    text-align: left;
+}
+
+/* Tables end */
+
+#languages {
+    text-align: right;
+    padding-right: 25px;
+    font-size: 85%;
+    height: auto!important;
+    min-height: 36px;
+}
+
+#languages span.selected {
+    font-weight: bold;
+}
+
+#languages a {
+    color:#222;
+    text-decoration:none;
+    border-bottom:1px solid #ccc;
+}
+
+#languages a:hover {
+    border-bottom:1px solid #aaa;
+}
+
+#profile {
+    float: right;
+    text-align: right;
+    padding: 0 25px;
+    margin: 0;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+#loginTitle {
+    font: 30px "Georgia", "Times New Roman", serif;
+    text-align: center;
+    color: silver;
+    margin: 1em;
+}
+
+#loginMessageBox {
+    margin: 1em;
+}
+
+#loginBox {
+    width: 450px;
+    margin: 0 auto;
+}
+
+#header {
+    padding-top: 0px;
+}
+
+h1#logo {
+    margin-bottom: 0;
+    height: 70px;
+    float: left;
+    width: 600px;
+}
+
+ul#nav {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+#content div.summary {
+    background-color: #eeeeee;
+    border: solid #cccccc 3px;
+    padding: 4px;
+    margin: 10px;
+}
+
+#content div.summary p {
+    margin: 0;
+    padding: 0;
+    line-height: 18px;
+}
+
+#content h1 {
+    font-size: 16px;
+}
+
+/* Actions */
+.action {
+    padding: 5px 5px 5px 18px;
+    text-decoration: none;
+    border: 0px solid!important;
+    white-space: nowrap;
+    min-width: 16px;
+    min-height: 16px;
+    display: inline-block;
+}
+
+.action-no-text {
+    padding-left: 1px;
+}
+
+.action-add, .action-add:hover {
+    background: url(../images/silk/icons/add.png) no-repeat center left;
+}
+
+.action-edit, .action-edit:hover {
+    background: url(../images/silk/icons/pencil.png) no-repeat center left;
+}
+
+.action-delete, .action-delete:hover {
+    background: url(../images/silk/icons/delete.png) no-repeat center left;
+}
+
+.action-detail-go, .action-detail-go:hover {
+    background: url(../images/silk/icons/table_go.png) no-repeat center left;
+}
+
+.action-back, .action-back:hover {
+    background: url(../images/silk/icons/arrow_left.png) no-repeat center left;
+}
+
+.action-cancel, .action-cancel:hover {
+    background: url(../images/silk/icons/cancel.png) no-repeat center left;
+}
+
+.action-confirm, .action-confirm:hover {
+    background: url(../images/silk/icons/accept.png) no-repeat center left;
+}
+
+.action-start, .action-start:hover {
+    background: url(../images/silk/icons/cog_go.png) no-repeat center left;
+}
+
+.action-right, .action-right:hover {
+    background: url(../images/silk/icons/arrow_right.png) no-repeat center left;
+}
+
+.action-up, .action-up:hover {
+    background: url(../images/silk/icons/arrow_up.png) no-repeat center left;
+}
+
+.action-down, .action-down:hover {
+    background: url(../images/silk/icons/arrow_down.png) no-repeat center left;
+}
+
+.action-pdf-document, .action-pdf-document:hover {
+    background: url(../images/silk/icons/page_white_acrobat.png) no-repeat center left;
+}
+
+.action-xls-document, .action-xls-document:hover {
+    background: url(../images/silk/icons/page_white_excel.png) no-repeat center left;
+}
+
+.action-run, .action-run:hover {
+    background: url(../images/silk/icons/cog.png) no-repeat center left;
+}
+
+.action-refresh, .action-refresh:hover {
+    background: url(../images/silk/icons/arrow_refresh.png) no-repeat center left;
+}
+
+.action-clear, .action-clear:hover {
+    background: url(../images/silk/icons/cross.png) no-repeat center left;
+}
+
+.action-copy, .action-copy:hover {
+    background: url(../images/silk/icons/page_copy.png) no-repeat center left;
+}
+
+/* Actions end */
+
+/* Forms */
+
+/* Form styles */
+div.form-container { margin: 10px; padding: 5px; background-color: #FFF; border: #EEE 1px solid; }
+
+p.legend { margin-bottom: 1em; }
+p.legend em { color: #C00; font-style: normal; }
+
+div.errors { margin: 0 0 10px 0; padding: 5px 10px; border: #FC6 1px solid; background-color: #FFC; }
+div.errors p { margin: 0; }
+div.errors p em { color: #C00; font-style: normal; font-weight: bold; }
+
+div.form-container form p { margin: 0; }
+div.form-container form p.note { margin: 0 0 0 170px!important; font-size: 10px!important; color: #333!important; line-height: 10px!important; word-spacing: 0!important;}
+div.form-container form fieldset { margin: 10px 0; padding: 10px; border: #DDD 1px solid; }
+div.form-container form legend { font-weight: bold; color: #666; }
+div.form-container form fieldset div,
+div.form-container form div { padding: 0.25em 0; }
+div.form-container label { margin-right: 10px; padding-right: 10px; width: 150px; display: block; float: left; text-align: right; position: relative; }
+div.form-container label.error { color: #C00; }
+div.form-container span.error { color: #C00; display: block; margin-left: 170px; }
+div.form-container label em { position: absolute; right: 0; font-size: 120%; font-style: normal; color: #C00; }
+div.form-container input.error { border-color: #C00; background-color: #FEF; }
+div.form-container input:focus,
+div.form-container input.error:focus,
+div.form-container textarea:focus {	background-color: #FFC; border-color: #FC6; }
+div.form-container div.controlset label,
+div.form-container div.controlset input { display: inline; float: none; }
+div.form-container div.controlset label.right { margin-right: 10px; padding-right: 10px; padding-left: 10px; display: inline-block; min-width: 150px; width: 150px; text-align: right; }
+div.form-container div.controlset label.controlset { display: block; float: left; }
+div.form-container div.controlset div { margin-left: 170px; }
+div.form-container div.buttonrow { margin-left: 180px; }
+div.form-container div.formaligned { margin-left: 170px; }
+
+div.form-help-text span {
+    font-size: 0.9em;
+    color: silver;
+}
+
+div.form-help-text {
+    line-height: 0.8em;
+    margin-bottom: 10px;
+}
+
+span.form-help-text {
+    font-size: 0.8em;
+    color: silver;
+}
+
+#errors {
+    color:red;
+}
+
+.errorBox {
+    display: block;
+    color: red;
+    margin-left: 170px;
+}
+
+.fieldInError {
+    background-color: #ffebeb;
+}
+
+textarea.rowEditing {
+    height:3em;
+    width: 25em;
+}
+
+div.formButtons {
+    margin: 1em 1em 1em 15.5em;
+}
+
+#content .calendar-icon {
+    margin: 0px;
+    border: none;
+}
+
+/* Forms end */
+
+/* Error/notice start */
+
+div.notice_flash {
+    background-color: #dffadd;
+    padding: 5px;
+    margin: 5px;
+    border: dotted gray thin;
+}
+
+div.notice_flash p {
+    margin: 0!important;
+}
+
+div.error_flash {
+    background-color: #faddde;
+    padding: 5px;
+    margin: 5px;
+    border: dotted gray thin;
+}
+
+div.error_flash p {
+    margin: 0!important;
+}
+
+/* Error/notice end */
+
+
+.fullWidth {
+    clear: both;
+    width: 100%!important;
+}
+
+.midWidth {
+    width: 48%;
+    float: left;
+    padding: 5px;
+}
+
+.smallText {
+    font-size: 10px;
+}
+
+.strong {
+    font-weight: bold;
+}

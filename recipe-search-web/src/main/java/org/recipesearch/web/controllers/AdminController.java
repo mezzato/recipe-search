@@ -1,16 +1,3 @@
-// Copyright 2006-2007 The Parancoe Team
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 package org.recipesearch.web.controllers;
 
 import java.util.HashMap;
@@ -29,11 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin/*.html")
 public class AdminController {
+
     private static final Logger logger = Logger.getLogger(AdminController.class);
 
     @RequestMapping
-    public ModelAndView index(HttpServletRequest req, HttpServletResponse res) {
-        return new ModelAndView("admin/index", null);
+    public String index(HttpServletRequest req, HttpServletResponse res) {
+        return "admin/index";
     }
 
     @RequestMapping
@@ -42,8 +30,12 @@ public class AdminController {
             MemoryAppender.clean();
         }
 
-        if ("error".equals(req.getParameter("test"))) logger.error("sample error message");
-        if ("warn".equals(req.getParameter("test"))) logger.warn("sample warn message");
+        if ("error".equals(req.getParameter("test"))) {
+            logger.error("sample error message");
+        }
+        if ("warn".equals(req.getParameter("test"))) {
+            logger.warn("sample warn message");
+        }
 
         String log = MemoryAppender.getFullLog();
         log = colourLog(log);
@@ -65,14 +57,22 @@ public class AdminController {
 
     private String colourLog(String log) {
         String lines[];
-        if (log == null) lines = new String[]{""};
-        else lines = log.split("[\\n\\r]");
+        if (log == null) {
+            lines = new String[]{""};
+        } else {
+            lines = log.split("[\\n\\r]");
+        }
         for (int i = 0; i < lines.length; i++) {
-            if (lines[i].indexOf("[ERROR]") != -1) lines[i] = "<span class=\"log_error\">" + lines[i] + "</span>";
-            if (lines[i].indexOf("[WARN]") != -1) lines[i] = "<span class=\"log_warn\">" + lines[i] + "</span>";
-            if (StringUtils.isNotBlank(lines[i])) lines[i] += "<br/>";
+            if (lines[i].indexOf("[ERROR]") != -1) {
+                lines[i] = "<span class=\"log_error\">" + lines[i] + "</span>";
+            }
+            if (lines[i].indexOf("[WARN]") != -1) {
+                lines[i] = "<span class=\"log_warn\">" + lines[i] + "</span>";
+            }
+            if (StringUtils.isNotBlank(lines[i])) {
+                lines[i] += "<br/>";
+            }
         }
         return StringUtils.join(lines);
     }
-
 }

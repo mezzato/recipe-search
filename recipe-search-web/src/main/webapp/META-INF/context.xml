@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/parancoe-search" reloadable="true">
-    <Resource
-        auth="Container"
-        name="jdbc/parancoe-searchDS"
-        type="javax.sql.DataSource"
-        driverClassName="org.postgresql.Driver"
-        password="0dm1n1str0t0r"
-        username="postgres"
-        url="jdbc:postgresql://localhost/parancoe"
-        maxActive="5"/>
+<Context path="/recipe-search" reloadable="true">
+  <Resource auth="Container" driverClassName="${app.datasource.driver}" maxActive="5" name="jdbc/recipe-search-webDS" password="${app.datasource.password}" type="javax.sql.DataSource" url="${app.datasource.url}" username="${app.datasource.username}"/>
 </Context>
-

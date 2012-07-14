@@ -15,8 +15,6 @@ import org.hibernate.search.FullTextSession;
 import org.recipesearch.hibernatesearch.po.Recipe;
 import org.recipesearch.hibernatesearch.util.SessionHolder;
 
-import org.junit.Ignore;
-
 /**
  * Example 2.10, 2.11, 2.12, 2.13
  */

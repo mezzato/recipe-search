@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Context 
-  docBase="C:\Users\AE14665\workspace\recipe-search\recipe-search-webservices\target\recipe-search-webservices-0.0.1-SNAPSHOT.war"
+  docBase="C:\Users\AE14665\workspace\recipe-search\recipe-search-webservices\target\recipe-search-webservices.war"
   reloadable="true" 
+   
    
     path="/recipe-search-webservices">
        <Resource

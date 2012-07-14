@@ -4,54 +4,350 @@
 
 	<groupId>org.recipesearch</groupId>
 	<artifactId>recipe-search</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Recipe Search Example</name>
 	<url>https://github.com/mezzato/recipe-search</url>
 
+	<modules>
+		<module>recipe-search-core</module>
+		<module>recipe-search-hibernatesearch</module>
+		<module>recipe-search-web</module>
+		<!-- <module>recipe-search-webservices</module> -->
+
+	</modules>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<main.basedir>${basedir}</main.basedir>
-		<lambico.version>1.0-SNAPSHOT</lambico.version>
+		<year>2011</year>
+		<app.parancoe.version>3.0-SNAPSHOT</app.parancoe.version>
+		<app.lambico.version>1.0-SNAPSHOT</app.lambico.version>
+		<app.springsecurity.version>3.0.5.RELEASE</app.springsecurity.version>
+		<app.hibernate.version>3.6.2.Final</app.hibernate.version>
+		<app.log4j.version>1.2.14</app.log4j.version>
+		<app.junit3.version>3.8.2</app.junit3.version>
+		<app.hsqldb.version>1.8.0.10</app.hsqldb.version>
+
+		<!-- recipe-search default configuration -->
+		<app.datasource>java:comp/env/jdbc/recipe-search-webDS</app.datasource>
+		<app.datasource.driver>org.hsqldb.jdbcDriver</app.datasource.driver>
+		<app.datasource.url>jdbc:hsqldb:mem:recipe-search-web</app.datasource.url>
+		<app.datasource.username>sa</app.datasource.username>
+		<app.datasource.password />
+		<app.hibernate.show_sql>true</app.hibernate.show_sql>
+		<app.log.console.level>INFO</app.log.console.level>
+		<app.log.file.level>DEBUG</app.log.file.level>
+		<app.log.rootdir>/tmp/log-recipe-search</app.log.rootdir>
+		<log4j.logger.org.parancoe>INFO</log4j.logger.org.parancoe>
+		<log4j.logger.org.recipesearch.web>DEBUG</log4j.logger.org.recipesearch.web>
+
+		<!-- NetBeans IDE properties -->
+		<org-netbeans-modules-editor-indent.CodeStyle.usedProfile>project</org-netbeans-modules-editor-indent.CodeStyle.usedProfile>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.spaces-per-tab>4</org-netbeans-modules-editor-indent.CodeStyle.project.spaces-per-tab>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.tab-size>8</org-netbeans-modules-editor-indent.CodeStyle.project.tab-size>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.indent-shift-width>4</org-netbeans-modules-editor-indent.CodeStyle.project.indent-shift-width>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width>100</org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>true</org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapBinaryOps>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapBinaryOps>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapExtendsImplementsKeyword>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapExtendsImplementsKeyword>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapAnnotationArgs>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapAnnotationArgs>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.text-limit-width>100</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.text-limit-width>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapTernaryOps>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapTernaryOps>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapMethodParams>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapMethodParams>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapThrowsKeyword>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapThrowsKeyword>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapExtendsImplementsList>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapExtendsImplementsList>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapAssignOps>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapAssignOps>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.tab-size>8</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.tab-size>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapMethodCallArgs>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapMethodCallArgs>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapChainedMethodCalls>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapChainedMethodCalls>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapFor>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapFor>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapArrayInit>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapArrayInit>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapThrowsList>WRAP_IF_LONG</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapThrowsList>
 	</properties>
 
-	<modules>
-	<module>recipe-search-core</module>
-		<module>recipe-search-hibernatesearch</module>
-		<module>recipe-search-web</module>
-		<module>recipe-search-webservices</module>
-		
-	</modules>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.recipesearch</groupId>
+				<artifactId>recipe-search-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.parancoe</groupId>
+				<artifactId>parancoe-core</artifactId>
+				<version>${app.parancoe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.parancoe</groupId>
+				<artifactId>parancoe-web</artifactId>
+				<version>${app.parancoe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.parancoe</groupId>
+				<artifactId>parancoe-validator</artifactId>
+				<version>${app.parancoe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.parancoe</groupId>
+				<artifactId>parancoe-plugin-tiles</artifactId>
+				<version>${app.parancoe.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${app.springsecurity.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-beans</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-orm</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-aop</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-test</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-jdbc</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-tx</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-support</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-web</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${app.springsecurity.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-beans</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-orm</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-aop</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-test</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-jdbc</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-tx</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-support</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-web</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${app.springsecurity.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>4.1.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${app.junit3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${app.hsqldb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lambico</groupId>
+				<artifactId>lambico-test</artifactId>
+				<version>${app.lambico.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lambico</groupId>
+				<artifactId>lambico-spring-hibernate</artifactId>
+				<version>${app.lambico.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>displaytag</groupId>
+				<artifactId>displaytag</artifactId>
+				<version>1.2</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-lang</groupId>
+						<artifactId>commons-lang</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.lowagie</groupId>
+				<artifactId>itext</artifactId>
+				<version>2.0.8</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>8.3-603.jdbc4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-						<encoding>UTF-8</encoding>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/bin.xml</descriptor>
+						<descriptor>src/assembly/bin-with-dependencies.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+					<useFile>true</useFile>
+					<forkMode>once</forkMode> <!-- pertest once or never -->
+					<!-- <reportFormat>plain</reportFormat> -->
+					<!--argLine>-Xmx512M</argLine --> <!-- don't use if you want to debug tests in NetBeans -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.5.0</version>
+				<configuration>
+					<header>${main.basedir}/LICENSE_HEADER</header>
+					<excludes>
+						<exclude>target/**</exclude>
+						<exclude>m2-target/**</exclude>
+						<exclude>**/*.properties</exclude>
+						<exclude>LICENSE_HEADER</exclude>
+						<exclude>nb-configuration.xml</exclude>
+						<exclude>nbactions.xml</exclude>
+						<exclude>profiles.xml</exclude>
+						<exclude>**/*.svg</exclude>
+						<exclude>src/main/webapp/javascripts/builder.js</exclude>
+						<exclude>src/main/webapp/javascripts/effects.js</exclude>
+						<exclude>src/main/webapp/javascripts/parancoe.js</exclude>
+						<exclude>src/main/webapp/javascripts/dragdrop.js</exclude>
+						<exclude>src/main/webapp/javascripts/prototype.js</exclude>
+						<exclude>src/main/webapp/javascripts/slider.js</exclude>
+						<exclude>src/main/webapp/javascripts/sound.js</exclude>
+						<exclude>src/main/webapp/javascripts/scriptaculous.js</exclude>
+						<exclude>src/main/webapp/javascripts/controls.js</exclude>
+						<exclude>src/main/webapp/templates/clarity/**</exclude>
+						<exclude>src/main/webapp/WEB-INF/tiles/templates/clarity_main.jsp</exclude>
+						<exclude>src/main/webapp/images/silk/**</exclude>
+					</excludes>
+					<properties>
+						<name>${project.name}</name>
+						<year>${project.inceptionYear}</year>
+						<holder>recipe-search</holder>
+						<contact>info@recipe-search.com</contact>
+					</properties>
+					<encoding>UTF-8</encoding>
+					<mapping>
+						<yml>SCRIPT_STYLE</yml>
+						<jspf>DYNASCRIPT_STYLE</jspf>
+					</mapping>
+				</configuration>
+				<!-- Uncomment the executions section if you want to check the license 
+					at every build -->
+				<!-- <executions> <execution> <goals> <goal>check</goal> </goals> </execution> 
+					</executions> -->
+			</plugin>
+		</plugins>
+
 	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-
 	<reporting>
 		<plugins>
 			<plugin>
@@ -81,25 +377,33 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	
-	  <repositories>
-        <repository>
-            <id>maven2-repository.dev.java.net</id>
-            <name>Java.net Repository for Maven</name>
-            <url>http://download.java.net/maven/2/</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>jboss-maven2-repository</id>
-            <name>JBoss Repository for Maven</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+
+	<repositories>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jboss-maven2-repository</id>
+			<name>JBoss Repository for Maven</name>
+			<url>http://repository.jboss.com/maven2/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>

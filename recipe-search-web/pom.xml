@@ -1,40 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-
-	<parent>
-		<groupId>org.recipesearch</groupId>
-		<artifactId>recipe-search</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+	<parent>
+		<artifactId>recipe-search</artifactId>
+		<groupId>org.recipesearch</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 	<artifactId>recipe-search-web</artifactId>
 	<packaging>war</packaging>
 	<name>Parancoe Based Web Search Application</name>
 	<url>https://github.com/mezzato/recipe-search</url>
+	<properties>
+		<main.basedir>${basedir}/..</main.basedir>
+	</properties>
 	<build>
 		<finalName>recipe-search-web</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<skip>false</skip>
-					<useFile>true</useFile>
-					<forkMode>once</forkMode> <!-- pertest once or never -->
-					<!-- <reportFormat>plain</reportFormat> -->
-					<!--argLine>-Xmx512M</argLine --> <!-- don't use if you want to debug tests in NetBeans -->
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<encoding>UTF-8</encoding>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<targetPath>META-INF</targetPath>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>${basedir}/src/main/webapp/META-INF</directory>
+							<includes>
+								<include>context.xml</include>
+							</includes>
+						</resource>
+						<resource>
+							<filtering>false</filtering>
+							<targetPath>META-INF</targetPath>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>${basedir}/src/main/webapp/META-INF</directory>
+							<excludes>
+								<exclude>context.xml</exclude>
+							</excludes>
+						</resource>
+						<resource>
+							<filtering>true</filtering>
+							<targetPath>WEB-INF</targetPath>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<includes>
+								<include>database.xml</include>
+								<include>applicationContext.xml</include>
+								<include>parancoe-servlet.xml</include>
+								<include>web.xml</include>
+							</includes>
+						</resource>
+						<resource>
+							<filtering>false</filtering>
+							<targetPath>WEB-INF</targetPath>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<excludes>
+								<exclude>database.xml</exclude>
+								<exclude>applicationContext.xml</exclude>
+								<exclude>parancoe-servlet.xml</exclude>
+								<exclude>web.xml</exclude>
+							</excludes>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -44,74 +81,132 @@
 			<id>parancoe-org-repository</id>
 			<name>Parancoe Repository for Maven</name>
 			<url>http://maven2.parancoe.org/repo</url>
-			<layout>default</layout>
 		</repository>
 		<repository>
 			<id>maven2-repository.dev.java.net</id>
 			<name>Java.net Repository for Maven</name>
 			<url>http://download.java.net/maven/2/</url>
-			<layout>default</layout>
 		</repository>
 	</repositories>
 	<dependencies>
-
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>recipe-search-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
-
-		<!-- The Parancoe framework -->
 		<dependency>
 			<groupId>org.parancoe</groupId>
 			<artifactId>parancoe-web</artifactId>
-			<version>2.0.1</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<!-- Parancoe Plugins -->
 		<dependency>
 			<groupId>org.parancoe</groupId>
-			<artifactId>parancoe-plugin-springsecurity</artifactId>
-			<version>2.0.2</version>
+			<artifactId>parancoe-validator</artifactId>
 			<scope>compile</scope>
 		</dependency>
-
-		<!-- common db driver(s) -->
-		<!-- HSQLDB -->
+		<dependency>
+			<groupId>org.parancoe</groupId>
+			<artifactId>parancoe-plugin-tiles</artifactId>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.7</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Servlet/JSP APIs provided by your container -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Only for tests of your application (if any ;) ) -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- Spring Security -->
+		<!-- springsecurity tag lib -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-orm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-test</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-support</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>displaytag</groupId>
+			<artifactId>displaytag</artifactId>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>8.3-603.jdbc4</version>
 		</dependency>
 	</dependencies>
 </project>

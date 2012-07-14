@@ -1,4 +1,6 @@
-<link href="${cp}/stylesheets/default.css" rel="stylesheet" type="text/css"/>
+
+<link href="${cp}/stylesheets/custom.css" rel="stylesheet" type="text/css"/>
+<link href="${cp}/stylesheets/displaytag/displaytag.css" rel="stylesheet" type="text/css"/>
 
 <style type="text/css">
 #messageZone {

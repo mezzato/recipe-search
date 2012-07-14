@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:parancoe="http://www.parancoe.org/schema/parancoe"
@@ -10,26 +11,23 @@
        http://www.parancoe.org/schema/parancoe http://www.parancoe.org/schema/parancoe.xsd
        http://www.parancoe.org/schema/parancoe-web http://www.parancoe.org/schema/parancoe-web.xsd
        http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
-    
+
     <context:component-scan base-package="org.recipesearch.web.controllers"/>
- 
-    <bean id="methodHandler" parent="abstractMethodHandler">
-        <property name="webBindingInitializer">
-            <bean class="org.recipesearch.web.controllers.AppBindingInitializer"/>
-        </property>
-    </bean>
-    
-    <!-- begin security section -->
-    <bean name="pluginSecurityFilterDefinitions" class="java.lang.String">
+
+    <bean id="tilesDefinitionUrls" class="java.util.ArrayList">
         <constructor-arg>
-            <value>
-                CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
-                PATTERN_TYPE_APACHE_ANT
-                /admin/**=ROLE_ADMIN
-                /**=IS_AUTHENTICATED_ANONYMOUSLY
-            </value>
+            <list >
+                <value>/WEB-INF/tiles/defs/default.xml</value>
+            </list>
         </constructor-arg>
     </bean>
-    <!-- end security section -->
-        
+
+    <!--  override bean definition in parancoe-servlet.xml  -->
+    <bean id="exceptionResolver" class="org.recipesearch.web.ExceptionResolver" autowire="byType"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="-1"/>
+    </bean>
+
 </beans>
