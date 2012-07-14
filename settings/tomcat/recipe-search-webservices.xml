@@ -7,12 +7,12 @@
     path="/recipe-search-webservices">
        <Resource
         auth="Container"
-        name="jdbc/parancoe-searchDS"
+        name="jdbc/websearch-searchDS"
         type="javax.sql.DataSource"
         driverClassName="org.postgresql.Driver"
         password="0dm1n1str0t0r"
         username="postgres"
-        url="jdbc:postgresql://localhost/parancoe"
+        url="jdbc:postgresql://localhost/websearch"
         maxActive="5"/>
 		
 </Context>

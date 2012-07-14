@@ -16,6 +16,9 @@
 		<listener-class>org.parancoe.web.ContextListener</listener-class>
 	</listener>
 
+    <listener>
+        <listener-class>org.recipesearch.webservices.PopulateInitialDataContextListener</listener-class>
+    </listener>
 
 	<servlet>
 		<servlet-name>parancoe</servlet-name>

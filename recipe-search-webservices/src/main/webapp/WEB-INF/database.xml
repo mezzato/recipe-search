@@ -5,7 +5,7 @@
        http://www.parancoe.org/schema/parancoe http://www.parancoe.org/schema/parancoe.xsd">
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/parancoe-searchDS" />
+		<property name="jndiName" value="java:comp/env/jdbc/websearch-searchDS" />
 	</bean> 
 
 <!-- 
