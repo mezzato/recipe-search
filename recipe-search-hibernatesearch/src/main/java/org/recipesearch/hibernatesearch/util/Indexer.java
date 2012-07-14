@@ -1,4 +1,4 @@
-package org.recipesearch.hibernatesearch.test;
+package org.recipesearch.hibernatesearch.util;
 
 import java.util.List;
 

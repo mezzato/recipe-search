@@ -3,13 +3,10 @@ package org.recipesearch.hibernatesearch.test;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.lambico.test.spring.hibernate.DBTest;
-import org.lambico.test.spring.hibernate.DaoUtils;
-import org.lambico.test.spring.hibernate.FixtureHelper;
-import org.lambico.dao.generic.GenericDaoBase;
 import org.recipesearch.hibernatesearch.po.Person;
 import org.recipesearch.hibernatesearch.po.Recipe;
+import org.recipesearch.hibernatesearch.util.Indexer;
 import org.recipesearch.hibernatesearch.util.SessionHolder;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 public abstract class BaseTest extends DBTest {
 

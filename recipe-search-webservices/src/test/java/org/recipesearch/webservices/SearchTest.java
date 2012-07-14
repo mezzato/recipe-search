@@ -1,4 +1,4 @@
-package org.recipe.search.webservices;
+package org.recipesearch.webservices;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,10 +12,14 @@ import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.MappingJsonFactory;
+import org.codehaus.jackson.type.TypeReference;
+import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.recipesearch.core.po.Recipe;
 
-public class HelloWorldIT {
+public class SearchTest {
 	private static String endpointUrl;
 	
 	@BeforeClass
@@ -23,29 +27,32 @@ public class HelloWorldIT {
 		endpointUrl = System.getProperty("service.url");
 	}
 	
-	@Test
+	@Ignore
 	public void testPing() throws Exception {
-		WebClient client = WebClient.create(endpointUrl + "/hello/echo/SierraTangoNevada");
+		WebClient client = WebClient.create(endpointUrl + "/search/echo/SierraTangoNevada");
 		Response r = client.accept("text/plain").get();
 		assertEquals(Response.Status.OK.getStatusCode(), r.getStatus());
 		String value = IOUtils.toString((InputStream)r.getEntity());
 		assertEquals("SierraTangoNevada", value);
 	}
 	
-	@Test
-	public void testJsonRoundtrip() throws Exception {
+	@Ignore
+	public void testSearch() throws Exception {
 		 List<Object> providers = new ArrayList<Object>();
 	    providers.add(new org.codehaus.jackson.jaxrs.JacksonJsonProvider());
-	    JsonBean inputBean = new JsonBean();
-	    inputBean.setVal1("Maple");
-		WebClient client = WebClient.create(endpointUrl + "/hello/jsonBean", providers);
+	    SearchCriteria searchCriteria = new SearchCriteria();
+	    searchCriteria.setSearchText("Weißwurst");
+		WebClient client = WebClient.create(endpointUrl + "/search/recipe", providers);
 		Response r = client.accept("application/json")
 				.type("application/json")
-				.post(inputBean);
+				.post(searchCriteria);
 		assertEquals(Response.Status.OK.getStatusCode(), r.getStatus());
 		MappingJsonFactory factory = new MappingJsonFactory();
 		JsonParser parser = factory.createJsonParser((InputStream)r.getEntity());
-		JsonBean output = parser.readValueAs(JsonBean.class);
-		assertEquals("Maple", output.getVal2());
+		
+		TypeReference<ArrayList<Recipe>> retType = new TypeReference<ArrayList<Recipe>>() {};
+		
+		ArrayList<Recipe> recipes = parser.readValueAs(retType);
+		Assert.assertTrue(recipes != null && recipes.size() == 1 && recipes.get(0).getAuthor().equals("Piggy Bank"));
 	}
 }

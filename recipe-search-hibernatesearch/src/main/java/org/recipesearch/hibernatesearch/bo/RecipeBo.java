@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.recipesearch.hibernatesearch.dao.RecipeDao;
+import org.recipesearch.hibernatesearch.dao.RecipeHibernatesearchDao;
 import org.recipesearch.hibernatesearch.po.Person;
 import org.recipesearch.hibernatesearch.po.Recipe;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,9 @@ public class RecipeBo {
 
     @Resource
     private RecipeDao recipeDao;
+    
+    @Resource
+    private RecipeHibernatesearchDao recipeHibernatesearchDao;
 	
     
     @Transactional()
@@ -71,6 +75,11 @@ public class RecipeBo {
         } else {
             System.out.println("Person ("+id+") not found");
         }
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Recipe>  searchText(String searchText) {
+        return this.recipeHibernatesearchDao.searchMultipleFields(searchText);
     }
     
 

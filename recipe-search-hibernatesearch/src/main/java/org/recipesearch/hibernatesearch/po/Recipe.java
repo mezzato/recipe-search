@@ -3,6 +3,8 @@ package org.recipesearch.hibernatesearch.po;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Transient;
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.search.annotations.Field;
@@ -22,8 +24,13 @@ value = {
 @Indexed
 public class Recipe extends SearchableEntityBase {
 
-	private org.recipesearch.core.po.Recipe recipe;
+	private transient org.recipesearch.core.po.Recipe recipe;
 	private Person cook;
+	
+	@Transient
+	public org.recipesearch.core.po.Recipe getRecipeCore() {
+		return this.recipe;
+	}
    
 
     @Field

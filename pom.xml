@@ -17,13 +17,11 @@
 	</properties>
 
 	<modules>
+	<module>recipe-search-core</module>
 		<module>recipe-search-hibernatesearch</module>
 		<module>recipe-search-web</module>
-		<!-- 
-		<module>recipe-search-webservice</module>
-		 -->
 		<module>recipe-search-webservices</module>
-		<module>recipe-search-core</module>
+		
 	</modules>
 
 

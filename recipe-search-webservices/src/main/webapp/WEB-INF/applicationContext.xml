@@ -24,4 +24,6 @@
 	<lambico:define-daos baseInterfacePackage="org.recipesearch.hibernatesearch.dao" />
 
 	<bean id="daoExceptionManager" class="org.lambico.dao.BypassingExceptionManager" />
+	
+
 </beans>
