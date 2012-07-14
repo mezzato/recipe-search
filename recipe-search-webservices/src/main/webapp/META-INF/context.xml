@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/recipe-search" reloadable="true">
+  <Resource auth="Container" driverClassName="${app.datasource.driver}" maxActive="5" name="jdbc/recipe-search-webDS" password="${app.datasource.password}" type="javax.sql.DataSource" url="${app.datasource.url}" username="${app.datasource.username}"/>
+</Context>

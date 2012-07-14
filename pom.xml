@@ -14,7 +14,7 @@
 		<module>recipe-search-core</module>
 		<module>recipe-search-hibernatesearch</module>
 		<module>recipe-search-web</module>
-		<!-- <module>recipe-search-webservices</module> -->
+		<module>recipe-search-webservices</module>
 
 	</modules>
 
@@ -73,6 +73,11 @@
 			<dependency>
 				<groupId>org.recipesearch</groupId>
 				<artifactId>recipe-search-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.recipesearch</groupId>
+				<artifactId>recipe-search-hibernatesearch</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -198,6 +203,11 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
 				<version>4.1.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-search</artifactId>
+				<version>3.4.2.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
