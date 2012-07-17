@@ -1,4 +1,4 @@
-package org.recipesearch.webservices;
+package org.recipesearch.core.webservices;
 
 
 public class SearchCriteria {

@@ -53,6 +53,31 @@
 					</webResources>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<!-- mvn clean install tomcat:run-war to deploy Look for "Running war 
+					on http://xxx" and "Setting the server's publish address to be /yyy" in console 
+					output; WSDL browser address will be concatenation of the two: http://xxx/yyy?wsdl -->
+				<groupId>org.codehaus.mojo</groupId>
+				<version>2.0-SNAPSHOT</version>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>start-tomcat</id>
+						<goals>
+							<goal>run-war</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<port>${test.server.port}</port>
+							<path>/webservice</path>
+							<fork>true</fork>
+							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 	<repositories>
@@ -97,11 +122,12 @@
 			<artifactId>jsp-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+        	<groupId>junit</groupId>
+        	<artifactId>junit</artifactId>
+        	<version>4.8.1</version><!--$NO-MVN-MAN-VER$-->
+        	<scope>test</scope>
+        </dependency>
 		<!-- Spring Security -->
 		<!-- springsecurity tag lib -->
 		<dependency>
@@ -157,12 +183,10 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>2.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>2.6.1</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections.Transformer;
 import org.recipesearch.core.po.Recipe;
+import org.recipesearch.core.webservices.Search;
+import org.recipesearch.core.webservices.SearchCriteria;
 import org.recipesearch.hibernatesearch.bo.RecipeBo;
 
 public class SearchImpl implements Search {

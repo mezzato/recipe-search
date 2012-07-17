@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:lambico="http://www.lambico.org/schema/lambico"
-       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lambico="http://www.lambico.org/schema/lambico" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.lambico.org/schema/lambico http://www.lambico.org/schema/lambico.xsd
-       http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+       http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+       http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
 
-	<context:component-scan base-package="org.recipesearch.hibernatesearch.bo org.recipesearch.hibernatesearch.dao" />
+	<context:component-scan
+		base-package="org.recipesearch.hibernatesearch.bo org.recipesearch.hibernatesearch.dao" />
 	<!-- Authomatic discovering of persistent classes -->
 	<lambico:discover-persistent-classes
 		basePackage="org.recipesearch.hibernatesearch.po" />
@@ -20,15 +21,24 @@
 
 	<bean id="daoExceptionManager" class="org.lambico.dao.BypassingExceptionManager" />
 
-    <context:component-scan base-package="org.recipesearch.core.bo"/>
-    <!-- Authomatic discovering of persistent classes -->
-    <lambico:discover-persistent-classes basePackage="org.recipesearch.core.po"/>
-    <!-- Authomatic DAO definition from persistent classes -->
-    <lambico:define-daos baseInterfacePackage="org.recipesearch.core.dao" />
+	<context:component-scan base-package="org.recipesearch.core.bo" />
+	<!-- Authomatic discovering of persistent classes -->
+	<lambico:discover-persistent-classes
+		basePackage="org.recipesearch.core.po" />
+	<!-- Authomatic DAO definition from persistent classes -->
+	<lambico:define-daos baseInterfacePackage="org.recipesearch.core.dao" />
 
-    <bean id="conf" class="org.recipesearch.web.Conf" parent="abstractConf"/>
+	<bean id="conf" class="org.recipesearch.web.Conf" parent="abstractConf" />
 
-    <bean id="exceptionManager" class="org.lambico.dao.BypassingExceptionManager"/>
+	<bean id="exceptionManager" class="org.lambico.dao.BypassingExceptionManager" />
 
-    <import resource="security.xml" />
+	<jaxws:client serviceClass="org.recipesearch.core.webservices.Search"
+		address="http://localhost:8080/recipe-search-webservices/search/searchRecipe"
+		id="searchService" />
+
+	<bean class="org.recipesearch.web.webservices.SearchClient" id="client">
+		<property name="searchService" ref="searchService" />
+	</bean>
+
+	<import resource="security.xml" />
 </beans>
