@@ -1,5 +1,10 @@
 
-<%@ include file="common.jspf" %>
+<%@ include file="common.jspf" %><span class="smallText"><a href="${cpr}/profile/edit"><spring:message code="YourProfile" text="?YourProfile?"/></a></span> 
+
+<p>
+	<a href="${cp}/recipe/search.html"><spring:message code="search_recipe" text="?search_recipe?"/></a>
+</p>
+
 <c:choose>
     <c:when test="${requestScope.lang eq 'it'}">
         Questa &egrave; l'applicazione template per il framework
