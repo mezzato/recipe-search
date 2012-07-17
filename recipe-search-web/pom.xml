@@ -26,6 +26,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<webResources>
@@ -69,7 +70,7 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>recipe-search-core</artifactId>
 			<scope>compile</scope>
 		</dependency>

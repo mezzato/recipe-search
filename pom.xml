@@ -277,16 +277,8 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptors>
-						<descriptor>src/assembly/bin.xml</descriptor>
-						<descriptor>src/assembly/bin-with-dependencies.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -296,26 +288,47 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.10</version>
 				<configuration>
 					<skip>false</skip>
-					<useFile>true</useFile>
-					<forkMode>once</forkMode> <!-- pertest once or never -->
-					<!-- <reportFormat>plain</reportFormat> -->
-					<!--argLine>-Xmx512M</argLine --> <!-- don't use if you want to debug tests in NetBeans -->
+					<useFile>false</useFile>
+					<reportFormat>plain</reportFormat>
+					<systemProperties>
+						<property>
+							<name>file.encoding</name>
+							<value>UTF-8</value>
+						</property>
+					</systemProperties>
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/bin.xml</descriptor>
+						<descriptor>src/assembly/bin-with-dependencies.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<inherited>true</inherited>
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
-				<version>1.5.0</version>
+				<version>1.9.0</version>
 				<configuration>
 					<header>${main.basedir}/LICENSE_HEADER</header>
+					<strictCheck>true</strictCheck>
+					<aggregate>false</aggregate>
 					<excludes>
 						<exclude>target/**</exclude>
 						<exclude>m2-target/**</exclude>
@@ -325,24 +338,22 @@
 						<exclude>nbactions.xml</exclude>
 						<exclude>profiles.xml</exclude>
 						<exclude>**/*.svg</exclude>
-						<exclude>src/main/webapp/javascripts/builder.js</exclude>
-						<exclude>src/main/webapp/javascripts/effects.js</exclude>
-						<exclude>src/main/webapp/javascripts/parancoe.js</exclude>
-						<exclude>src/main/webapp/javascripts/dragdrop.js</exclude>
-						<exclude>src/main/webapp/javascripts/prototype.js</exclude>
-						<exclude>src/main/webapp/javascripts/slider.js</exclude>
-						<exclude>src/main/webapp/javascripts/sound.js</exclude>
-						<exclude>src/main/webapp/javascripts/scriptaculous.js</exclude>
-						<exclude>src/main/webapp/javascripts/controls.js</exclude>
-						<exclude>src/main/webapp/templates/clarity/**</exclude>
-						<exclude>src/main/webapp/WEB-INF/tiles/templates/clarity_main.jsp</exclude>
-						<exclude>src/main/webapp/images/silk/**</exclude>
+						<exclude>examples/**</exclude>
+						<exclude>plugins/**</exclude>
+						<exclude>www/**</exclude>
+						<exclude>.idea/**</exclude>
+						<exclude>.hgtags</exclude>
+						<exclude>.hgignore</exclude>
+						<exclude>.git/**</exclude>
+						<exclude>catalog.xml</exclude>
+						<exclude>**/BUGS</exclude>
+						<exclude>**/LICENSE</exclude>
+						<exclude>**/TODO</exclude>
+						<exclude>settings/**</exclude>
 					</excludes>
 					<properties>
 						<name>${project.name}</name>
-						<year>${project.inceptionYear}</year>
-						<holder>recipe-search</holder>
-						<contact>info@recipe-search.com</contact>
+						<year>${year}</year>
 					</properties>
 					<encoding>UTF-8</encoding>
 					<mapping>
@@ -350,10 +361,16 @@
 						<jspf>DYNASCRIPT_STYLE</jspf>
 					</mapping>
 				</configuration>
-				<!-- Uncomment the executions section if you want to check the license 
-					at every build -->
-				<!-- <executions> <execution> <goals> <goal>check</goal> </goals> </execution> 
-					</executions> -->
+				<!-- Uncomment the executions section if you want to check the license at every build -->
+				<!-- 
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				 -->
 			</plugin>
 		</plugins>
 

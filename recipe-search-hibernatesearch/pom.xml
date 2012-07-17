@@ -87,7 +87,7 @@
 	</repositories>
 	<dependencies>
 	    <dependency>
-    		<groupId>${pom.groupId}</groupId>
+    		<groupId>${project.groupId}</groupId>
     		<artifactId>recipe-search-core</artifactId>
     		<version>0.0.1-SNAPSHOT</version>
     	</dependency>
