@@ -86,11 +86,11 @@
 		</repository>
 	</repositories>
 	<dependencies>
-	    <dependency>
-    		<groupId>${project.groupId}</groupId>
-    		<artifactId>recipe-search-core</artifactId>
-    		<version>0.0.1-SNAPSHOT</version>
-    	</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>recipe-search-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
