@@ -1,5 +1,15 @@
 <%@ include file="../common.jspf"%>
 <%-- this form-search-page. --%>
+<script type="text/javascript">
+	function launchSearch() {
+
+		var h = $H({
+			searchText : $('searchText').getValue()
+		});
+		window.location = "?" + h.toQueryString();
+		return false;
+	}
+</script>
 <div id="searchBox">
 	<div id="loginTitle">
 		<spring:message code="searchTitle" />
@@ -14,15 +24,16 @@
 	</div>
 	<div class="form-container">
 
-		<form name="searchForm" method="GET" action="${cp}/search/">
+		<form name="searchForm" method="GET" action="">
 			<div>
 				<label for="searchText"><spring:message code="search_text" /></label>
 				<input id="searchText" type='text' name='searchText' tabindex="1"
-					value="weiﬂwurst" />
+					value='<c:choose><c:when test="${not empty param.searchText}">${param.searchText}</c:when><c:otherwise>weiﬂwurst</c:otherwise></c:choose>' />
 			</div>
 			<div class="buttonrow">
 				<input id="submit" name="submit" type="submit"
 					value="<spring:message code='search'/>" tabindex="4" />
+				<!-- onclick="launchSearch"  -->
 			</div>
 		</form>
 	</div>

@@ -47,8 +47,8 @@ public class RecipeController {
     @Resource
     private SearchClient searchClient;
 
-    @RequestMapping(value = "search.html", method = RequestMethod.GET)
-    public String search(@RequestParam String searchText, Model model) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String search(@RequestParam(defaultValue=StringUtils.EMPTY) String searchText, Model model) {
         logger.debug("search text: " + searchText);
         List<Recipe> recipes = null;
         if(StringUtils.isNotBlank(searchText)){
@@ -59,7 +59,7 @@ public class RecipeController {
     }
     
 
-    @RequestMapping(value = "populate.html", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView populate(HttpServletRequest req, HttpServletResponse res) throws ParseException {
         Map params = new HashMap();
         //personBo.populateArchive();
