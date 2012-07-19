@@ -5,6 +5,8 @@
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+
+<!-- 
 	<bean id="tilesDefinitionUrls" class="java.util.ArrayList">
 		<constructor-arg>
 			<list>
@@ -13,14 +15,5 @@
 			</list>
 		</constructor-arg>
 	</bean>
-
-
-	<jaxws:client serviceClass="org.recipesearch.core.webservices.Search"
-		address="http://localhost:8080/recipe-search-webservices/search/searchRecipe"
-		id="searchService" />
-
-	<bean class="org.recipesearch.web.webservices.SearchClient" id="client">
-		<property name="searchService" ref="searchService" />
-	</bean>
-
+ -->
 </beans>

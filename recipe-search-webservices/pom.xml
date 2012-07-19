@@ -12,6 +12,18 @@
 	<name>recipe-search Web Service Application</name>
 	<properties>
 		<main.basedir>${basedir}/..</main.basedir>
+
+		<!-- <app.datasource.driver>org.hsqldb.jdbcDriver</app.datasource.driver> 
+			<app.datasource.username>sa</app.datasource.username> <app.datasource.password></app.datasource.password> 
+			<app.datasource.url>jdbc:hsqldb:mem:test</app.datasource.url> <app.hibernate.dialect>org.hibernate.dialect.HSQLDialect</app.hibernate.dialect> -->
+
+		<app.datasource.driver>org.postgresql.Driver</app.datasource.driver>
+		<app.datasource.username>postgres</app.datasource.username>
+		<app.datasource.password>0dm1n1str0t0r</app.datasource.password>
+		<app.datasource.url>jdbc:postgresql://localhost/websearch</app.datasource.url>
+		<app.hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</app.hibernate.dialect>
+
+
 	</properties>
 	<build>
 		<finalName>recipe-search-webservices</finalName>
@@ -21,7 +33,28 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<version>1.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<configuration>
+						<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+						<wtpmanifest>true</wtpmanifest>
+						<wtpapplicationxml>true</wtpapplicationxml>
+						<wtpversion>2.0</wtpversion>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -47,6 +80,7 @@
 								<include>database.xml</include>
 								<include>applicationContext.xml</include>
 								<include>parancoe-servlet.xml</include>
+								<include>beans.xml</include>
 								<include>web.xml</include>
 							</includes>
 						</resource>
@@ -54,23 +88,25 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<!-- mvn clean install tomcat:run-war to deploy Look for "Running war 
-					on http://xxx" and "Setting the server's publish address to be /yyy" in console 
-					output; WSDL browser address will be concatenation of the two: http://xxx/yyy?wsdl -->
-
-				<groupId>org.codehaus.mojo</groupId>
-				<version>1.1</version>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<executions>
-					<!-- <execution> <id>start-tomcat</id> <goals> <goal>run-war</goal> 
-						</goals> <phase>pre-integration-test</phase> <configuration> <port>${test.server.port}</port> 
-						<path>/webservice</path> <fork>true</fork> <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader> 
-						</configuration> </execution> -->
-				</executions>
-
-			</plugin>
-
+			<!-- Tomcat testing plugins -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>build-helper-maven-plugin</artifactId> 
+				<version>1.5</version> <executions> <execution> <id>reserve-network-port</id> 
+				<goals> <goal>reserve-network-port</goal> </goals> <phase>process-test-resources</phase> 
+				<configuration> <portNames> <portName>test.server.port</portName> </portNames> 
+				</configuration> </execution> </executions> </plugin> <plugin> <groupId>org.codehaus.mojo</groupId> 
+				<artifactId>tomcat-maven-plugin</artifactId> <executions> <execution> <id>start-tomcat</id> 
+				<goals> <goal>run-war</goal> </goals> <phase>pre-integration-test</phase> 
+				<configuration> <port>${test.server.port}</port> <path>/recipe-search-webservices</path> 
+				<fork>true</fork> <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader> 
+				</configuration> </execution> <execution> <id>stop-tomcat</id> <goals> <goal>shutdown</goal> 
+				</goals> <phase>post-integration-test</phase> <configuration> <path>/recipe-search-webservices</path> 
+				</configuration> </execution> </executions> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-failsafe-plugin</artifactId> <version>2.8.1</version> <executions> 
+				<execution> <id>integration-test</id> <goals> <goal>integration-test</goal> 
+				</goals> <configuration> <systemPropertyVariables> <service.url>http://localhost:${test.server.port}/recipe-search-webservices</service.url> 
+				</systemPropertyVariables> </configuration> </execution> <execution> <id>verify</id> 
+				<goals> <goal>verify</goal> </goals> </execution> </executions> </plugin> -->
+			<!-- END: Tomcat testing plugins -->
 		</plugins>
 	</build>
 	<repositories>
@@ -99,7 +135,7 @@
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -180,6 +216,10 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 	</dependencies>
 </project>

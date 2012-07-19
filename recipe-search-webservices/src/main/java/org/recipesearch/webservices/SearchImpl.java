@@ -10,10 +10,11 @@ import org.recipesearch.core.po.Recipe;
 import org.recipesearch.core.webservices.Search;
 import org.recipesearch.core.webservices.SearchCriteria;
 import org.recipesearch.hibernatesearch.bo.RecipeBo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class SearchImpl implements Search {
 
-    @Resource
+    @Autowired
     private RecipeBo recipeBo;
 	
     @Override

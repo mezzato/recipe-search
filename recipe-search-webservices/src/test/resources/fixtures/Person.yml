@@ -1,0 +1,12 @@
+- &Person-chickener
+  firstName: "Hen"
+  lastName: "Turkey"
+  birthDate: 1177535645454
+- &Person-porker
+  firstName: "Sow"
+  lastName: "Boar"
+  birthDate: 1177535645454
+- &Person-vegan
+  firstName: "Oat"
+  lastName: "Cabbage"
+  birthDate: 1176535645454
