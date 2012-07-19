@@ -12,7 +12,7 @@
 </script>
 <div id="searchBox">
 	<div id="loginTitle">
-		<spring:message code="searchTitle" />
+		<spring:message code="search_title" />
 	</div>
 	<div id="loginMessageBox">
 		<p>Type in some text to look for a recipe.</p>

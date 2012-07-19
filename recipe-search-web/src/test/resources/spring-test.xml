@@ -14,13 +14,4 @@
 		</constructor-arg>
 	</bean>
 
-
-	<jaxws:client serviceClass="org.recipesearch.core.webservices.Search"
-		address="http://localhost:8080/recipe-search-webservices/search/searchRecipe"
-		id="searchService" />
-
-	<bean class="org.recipesearch.web.webservices.SearchClient" id="client">
-		<property name="searchService" ref="searchService" />
-	</bean>
-
 </beans>
