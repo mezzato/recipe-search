@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.jpa.FullTextEntityManager;
+import org.recipesearch.hibernatesearch.po.Person;
 import org.recipesearch.hibernatesearch.po.Recipe;
 
 /**
@@ -42,6 +43,13 @@ public class Indexer {
 		List<Recipe> items = session.createCriteria(Recipe.class).list();
 		
 		for (Recipe item : items) {
+		    ftSession.index(item);  //manually index a Recipe instance
+		}
+		
+		@SuppressWarnings("unchecked")
+		List<Person> people = session.createCriteria(Person.class).list();
+		
+		for (Person item : people) {
 		    ftSession.index(item);  //manually index an Person instance
 		}
 		

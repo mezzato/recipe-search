@@ -1,5 +1,8 @@
 package org.recipesearch.hibernatesearch.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,14 +13,20 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
+import org.recipesearch.hibernatesearch.po.Person;
 import org.recipesearch.hibernatesearch.po.Recipe;
 import org.recipesearch.hibernatesearch.util.SessionHolder;
 import org.springframework.stereotype.Component;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.DateTools;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.FilteredQuery;
+import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.TermRangeFilter;
 import org.apache.lucene.util.Version;
 
 @Component
@@ -42,12 +51,76 @@ public class RecipeHibernatesearchDao {
 			throw new RuntimeException("Unable to parse query: " + searchQuery, e);
 		}
 
-		//Session session = SessionHolder.getSession();
-		//FullTextSession ftSession = org.hibernate.search.Search.getFullTextSession(session);
-		//Query query = ftSession.createFullTextQuery(luceneQuery, Recipe.class);
+		// Session session = SessionHolder.getSession();
+		// FullTextSession ftSession =
+		// org.hibernate.search.Search.getFullTextSession(session);
+		// Query query = ftSession.createFullTextQuery(luceneQuery,
+		// Recipe.class);
 
-		final List<Recipe> results = search(luceneQuery);
+		final List<Recipe> results = search(luceneQuery, sessionFactory);
 
+		return results;
+
+	}
+
+	public List<Person> searchAuthorByLastname(String lastName) {
+		// Building the Lucene query
+		String searchQuery = String.format("lastName:%s", lastName);
+		QueryParser parser = new QueryParser(Version.LUCENE_31, "lastName", new StandardAnalyzer(Version.LUCENE_31));
+
+		org.apache.lucene.search.Query luceneQuery;
+		try {
+			luceneQuery = parser.parse(searchQuery); // build Lucene query
+		} catch (ParseException e) {
+			throw new RuntimeException("Unable to parse query: " + searchQuery, e);
+		}
+
+		final List<Person> results = search(luceneQuery, sessionFactory);
+
+		return results;
+	}
+
+	public List<Person> searchAuthorByBirthday(Date fromDate, Date toDate) {
+
+		// Building the Lucene query
+
+		/*
+		 * try { SimpleDateFormat formatter = new
+		 * SimpleDateFormat("dd-MM-yyyy"); fromDate =
+		 * formatter.parse("01-01-1920"); toDate =
+		 * formatter.parse("01-01-2020"); } catch (java.text.ParseException e) {
+		 * // TODO Auto-generated catch block e.printStackTrace(); return null;
+		 * }
+		 */
+
+		org.apache.lucene.search.Query luceneQuery;
+		final String sFrom = DateTools.dateToString(fromDate, DateTools.Resolution.DAY);
+		final String sTo = DateTools.dateToString(toDate, DateTools.Resolution.DAY);
+
+		String fieldName = "birthDate";
+
+		/*
+		 * Term lowerTerm = new Term(fieldName, sFrom); Term upperTerm = new
+		 * Term(fieldName, sTo); TermRangeFilter filter = new
+		 * TermRangeFilter(fieldName, lowerTerm.text(), upperTerm.text(), true,
+		 * true); luceneQuery = new MatchAllDocsQuery(); //new FilteredQuery(
+		 * new MatchAllDocsQuery(), filter); luceneQuery = new FilteredQuery(
+		 * new MatchAllDocsQuery(), filter); //Query query = new
+		 * RangeQuery(startTerm, endTerm, inclusive);
+		 */
+
+		String searchQuery = String.format("%s:[%s TO %s]", fieldName, sFrom, sTo); // query
+																					// string
+		// String searchQuery = String.format("birthDate:%s", dateInIdx);
+		QueryParser parser = new QueryParser(Version.LUCENE_31, fieldName, new StandardAnalyzer(Version.LUCENE_31));
+
+		try {
+			luceneQuery = parser.parse(searchQuery); // build Lucene query
+		} catch (ParseException e) {
+			throw new RuntimeException("Unable to parse query: " + searchQuery, e);
+		}
+
+		final List<Person> results = search(luceneQuery, sessionFactory);
 		return results;
 
 	}
@@ -71,24 +144,24 @@ public class RecipeHibernatesearchDao {
 			throw new RuntimeException("Unable to parse query: " + searchText, e);
 		}
 
-		final List<Recipe> results = search(luceneQuery);
+		final List<Recipe> results = search(luceneQuery, sessionFactory);
 
 		return results;
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Recipe> search(org.apache.lucene.search.Query luceneQuery) {
+	public static <T> List<T> search(org.apache.lucene.search.Query luceneQuery, SessionFactory sessionFactory) {
 		SessionHolder.setSession(sessionFactory.openSession());
 
-		List<Recipe> results = null;
+		List<T> results = null;
 
 		try {
 
 			Session session = SessionHolder.getSession();
 			FullTextSession ftSession = org.hibernate.search.Search.getFullTextSession(session);
-			Query query = ftSession.createFullTextQuery(luceneQuery, Recipe.class); // return
-																					// matches
+			Query query = ftSession.createFullTextQuery(luceneQuery, Person.class, Recipe.class); // return
+			// matches
 
 			query.setFirstResult(0).setMaxResults(20); // Use pagination
 

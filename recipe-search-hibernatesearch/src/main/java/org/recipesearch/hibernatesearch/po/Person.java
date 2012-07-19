@@ -6,10 +6,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.apache.lucene.document.DateTools;
+import org.hibernate.search.annotations.DateBridge;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
 import org.lambico.po.hibernate.EntityBase;
 
 @javax.persistence.Entity()
-public class Person extends EntityBase {
+@Indexed
+public class Person extends SearchableEntityBase {
 
 	private transient org.recipesearch.core.po.Person person;
 
@@ -31,6 +38,7 @@ public class Person extends EntityBase {
 		this.person.setFirstName(firstName);
 	}
 
+	@Field
 	public String getLastName() {
 		return this.person.getLastName();
 	}
@@ -39,9 +47,18 @@ public class Person extends EntityBase {
 		this.person.setLastName(lastName);
 	}
 
+	@Transient
+	public String getBirthDateAsString() {
+		String date = DateTools.dateToString(this.person.getBirthDate(), DateTools.Resolution.DAY);
+		return date;
+	}
+	
+	@Field(index=Index.UN_TOKENIZED)
+	@DateBridge(resolution=Resolution.DAY)
 	@Temporal(TemporalType.DATE)
 	public Date getBirthDate() {
-		return this.person.getBirthDate();
+		Date date = this.person.getBirthDate();
+		return date;
 	}
 
 	public void setBirthDate(Date birthDate) {

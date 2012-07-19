@@ -1,7 +1,9 @@
 package org.recipesearch.hibernatesearch.bo;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
 import org.recipesearch.hibernatesearch.dao.RecipeDao;
 import org.recipesearch.hibernatesearch.dao.RecipeHibernatesearchDao;
 import org.recipesearch.hibernatesearch.po.Person;
@@ -82,6 +86,18 @@ public class RecipeBo {
         return this.recipeHibernatesearchDao.searchMultipleFields(searchText);
     }
     
+    @Transactional(readOnly = true)
+    public List<Person>  searchAuthorByBirthday(Date birthday) {
+    	Calendar cal = Calendar.getInstance();
+        cal.setTime(birthday);
+        cal.add(Calendar.DATE, -1); //minus number would decrement the days
+    	return this.recipeHibernatesearchDao.searchAuthorByBirthday(cal.getTime(), birthday);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Person>  searchAuthorByLastname(String lastName) {
+    	return this.recipeHibernatesearchDao.searchAuthorByLastname(lastName);
+    }
 
     /**
      * This method is called when a book is returned to the library.
