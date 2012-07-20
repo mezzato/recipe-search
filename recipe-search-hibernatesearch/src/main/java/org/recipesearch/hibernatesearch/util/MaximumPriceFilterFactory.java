@@ -1,7 +1,6 @@
 package org.recipesearch.hibernatesearch.util;
 
 import org.apache.lucene.search.Filter;
-import org.apache.lucene.search.RangeFilter;
 import org.apache.lucene.search.TermRangeFilter;
 import org.hibernate.search.annotations.Factory;
 import org.hibernate.search.annotations.Key;
