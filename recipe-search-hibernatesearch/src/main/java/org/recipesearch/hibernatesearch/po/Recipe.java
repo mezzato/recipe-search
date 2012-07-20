@@ -1,15 +1,24 @@
 package org.recipesearch.hibernatesearch.po;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
+import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
-import org.lambico.po.hibernate.EntityBase;
+import org.hibernate.search.annotations.Parameter;
+import org.recipesearch.hibernatesearch.util.ParameterizedPaddedRoundedPriceBridge;
+
 
 @javax.persistence.Entity()
 @NamedQueries(
@@ -22,10 +31,16 @@ value = {
     "from Recipe r where r.text like '%' || ? || '%'")
 	})
 @Indexed
+/*
+@org.hibernate.search.annotations.FullTextFilterDefs( {
+	@org.hibernate.search.annotations.FullTextFilterDef(name="maximumprice", impl=org.recipesearch.hibernatesearch.util.MaximumPriceFilterFactory.class) 
+} )
+*/
 public class Recipe extends SearchableEntityBase {
 
 	private transient org.recipesearch.core.po.Recipe recipe;
 	private Person cook;
+	private BigDecimal estimatedPrice;
 	
 	@Transient
 	public org.recipesearch.core.po.Recipe getRecipeCore() {
@@ -102,5 +117,24 @@ public class Recipe extends SearchableEntityBase {
     public String toString() {
         return this.recipe.toString();
     }
+
+    @Column(name="PRICE") @NotNull 
+    @Digits(fraction = 2, integer = 10) 
+    @Field(index=Index.UN_TOKENIZED, name="price") 
+    @FieldBridge( 
+    impl=ParameterizedPaddedRoundedPriceBridge.class,
+    params= { @Parameter(name="pad", value="10"),
+    @Parameter(name="round", value="1") }
+    ) 
+	public BigDecimal getEstimatedPrice() {
+		return estimatedPrice;
+	}
+
+
+	public void setEstimatedPrice(BigDecimal estimatedPrice) {
+		this.estimatedPrice = estimatedPrice;
+	}
+    
+    
 
 }

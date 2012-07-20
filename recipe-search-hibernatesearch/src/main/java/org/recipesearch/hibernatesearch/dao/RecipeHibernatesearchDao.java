@@ -1,7 +1,6 @@
 package org.recipesearch.hibernatesearch.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,18 +14,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
 import org.recipesearch.hibernatesearch.po.Person;
 import org.recipesearch.hibernatesearch.po.Recipe;
+import org.recipesearch.hibernatesearch.util.Padder;
 import org.recipesearch.hibernatesearch.util.SessionHolder;
 import org.springframework.stereotype.Component;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
-import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.FilteredQuery;
-import org.apache.lucene.search.MatchAllDocsQuery;
-import org.apache.lucene.search.TermRangeFilter;
 import org.apache.lucene.util.Version;
 
 @Component
@@ -62,6 +58,14 @@ public class RecipeHibernatesearchDao {
 		return results;
 
 	}
+	
+	public List<Recipe> searchRecipesByPriceRange(BigDecimal lowerPrice, BigDecimal upperPrice) {
+		Padder padder = new Padder(10,1);
+		String fromValue = padder.pad(lowerPrice); 
+		String toValue =  padder.pad(upperPrice);
+		final List<Recipe> results = searchRange("price",  fromValue, toValue);
+		return results;
+	}
 
 	public List<Person> searchAuthorByLastname(String lastName) {
 		// Building the Lucene query
@@ -82,21 +86,8 @@ public class RecipeHibernatesearchDao {
 
 	public List<Person> searchAuthorByBirthday(Date fromDate, Date toDate) {
 
-		// Building the Lucene query
-
-		/*
-		 * try { SimpleDateFormat formatter = new
-		 * SimpleDateFormat("dd-MM-yyyy"); fromDate =
-		 * formatter.parse("01-01-1920"); toDate =
-		 * formatter.parse("01-01-2020"); } catch (java.text.ParseException e) {
-		 * // TODO Auto-generated catch block e.printStackTrace(); return null;
-		 * }
-		 */
-
-		org.apache.lucene.search.Query luceneQuery;
 		final String sFrom = DateTools.dateToString(fromDate, DateTools.Resolution.DAY);
 		final String sTo = DateTools.dateToString(toDate, DateTools.Resolution.DAY);
-
 		String fieldName = "birthDate";
 
 		/*
@@ -109,9 +100,16 @@ public class RecipeHibernatesearchDao {
 		 * RangeQuery(startTerm, endTerm, inclusive);
 		 */
 
-		String searchQuery = String.format("%s:[%s TO %s]", fieldName, sFrom, sTo); // query
-																					// string
-		// String searchQuery = String.format("birthDate:%s", dateInIdx);
+
+		final List<Person> results = searchRange(fieldName,  sFrom, sTo);
+		return results;
+
+	}
+	
+	public <T> List<T> searchRange(String fieldName, String fromValue, String toValue) {
+		
+		org.apache.lucene.search.Query luceneQuery;
+		String searchQuery = String.format("%s:[%s TO %s]", fieldName, fromValue, toValue);
 		QueryParser parser = new QueryParser(Version.LUCENE_31, fieldName, new StandardAnalyzer(Version.LUCENE_31));
 
 		try {
@@ -120,9 +118,8 @@ public class RecipeHibernatesearchDao {
 			throw new RuntimeException("Unable to parse query: " + searchQuery, e);
 		}
 
-		final List<Person> results = search(luceneQuery, sessionFactory);
+		final List<T> results = search(luceneQuery, sessionFactory);
 		return results;
-
 	}
 
 	public List<Recipe> searchMultipleFields(String searchText) {

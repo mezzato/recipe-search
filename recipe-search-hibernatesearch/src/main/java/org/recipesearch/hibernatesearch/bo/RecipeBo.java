@@ -1,5 +1,6 @@
 package org.recipesearch.hibernatesearch.bo;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +18,7 @@ import org.recipesearch.hibernatesearch.dao.RecipeDao;
 import org.recipesearch.hibernatesearch.dao.RecipeHibernatesearchDao;
 import org.recipesearch.hibernatesearch.po.Person;
 import org.recipesearch.hibernatesearch.po.Recipe;
+import org.recipesearch.hibernatesearch.util.Padder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,6 +95,11 @@ public class RecipeBo {
         cal.add(Calendar.DATE, -1); //minus number would decrement the days
     	return this.recipeHibernatesearchDao.searchAuthorByBirthday(cal.getTime(), birthday);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Recipe> searchRecipesByPriceRange(BigDecimal lowerPrice, BigDecimal upperPrice) {
+    	return this.recipeHibernatesearchDao.searchRecipesByPriceRange(lowerPrice, upperPrice);
+	}
     
     @Transactional(readOnly = true)
     public List<Person>  searchAuthorByLastname(String lastName) {
