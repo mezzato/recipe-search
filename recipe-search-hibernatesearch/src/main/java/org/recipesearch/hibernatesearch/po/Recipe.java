@@ -40,7 +40,7 @@ public class Recipe extends SearchableEntityBase {
 
 	private transient org.recipesearch.core.po.Recipe recipe;
 	private Person cook;
-	private BigDecimal estimatedPrice;
+	private BigDecimal price;
 	
 	@Transient
 	public org.recipesearch.core.po.Recipe getRecipeCore() {
@@ -118,7 +118,7 @@ public class Recipe extends SearchableEntityBase {
         return this.recipe.toString();
     }
 
-    @Column(name="PRICE") @NotNull 
+    @Column(name="price") @NotNull 
     @Digits(fraction = 2, integer = 10) 
     @Field(index=Index.UN_TOKENIZED, name="price") 
     @FieldBridge( 
@@ -126,13 +126,13 @@ public class Recipe extends SearchableEntityBase {
     params= { @Parameter(name="pad", value="10"),
     @Parameter(name="round", value="1") }
     ) 
-	public BigDecimal getEstimatedPrice() {
-		return estimatedPrice;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
 
-	public void setEstimatedPrice(BigDecimal estimatedPrice) {
-		this.estimatedPrice = estimatedPrice;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
     
     

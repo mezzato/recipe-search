@@ -4,7 +4,7 @@
   cook: *Person-chickener
   numPages: 100
   text: "This must be something weird in English, exotic, practical, not too complicated though, it would be a waste of time!"
-  estimatedPrice: 1000.05
+  price: 1000.05
 
 - &Recipe-Pork
   author: "Piggy Bank"
@@ -12,7 +12,7 @@
   cook: *Person-porker
   numPages: 200
   text: "Dieser Text ist auf Deutsch, süßer Senf und Weißwurst sind immer herzlich willkommen."
-  estimatedPrice: 10000.05
+  price: 10000.05
   
 - &Recipe-Veggie
   author: "Mr Bean"
@@ -20,4 +20,4 @@
   cook: *Person-vegan
   numPages: 300
   text: "This is Greek with tabbing: εὐαγγέλιον"
-  estimatedPrice: 999.9
+  price: 999.9
