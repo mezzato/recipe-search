@@ -11,36 +11,33 @@
 	}
 </script>
 <div id="searchBox">
-	<div id="loginTitle">
+	<div id="searchTitle">
 		<spring:message code="search_title" />
-	</div>
-	<div id="loginMessageBox">
-		<p>Type in some text to look for a recipe.</p>
-		<c:if test="${not empty param.search_error}">
-			<font color="red"> Your search attempt was not successful, try
-				again.<br />
-			</font>
-		</c:if>
 	</div>
 	<div class="form-container">
 
-		<form name="searchForm" method="GET" action="">
+		<form:form
+			modelAttribute="<%= org.recipesearch.web.controllers.RecipeController.SEARCH_ATTR_NAME %>"
+			name="searchForm" method="GET" action="">
 			<div>
-				<label for="searchText"><spring:message code="search_text" /></label>
-				<input id="searchText" type='text' name='searchText' tabindex="1"
-					value='<c:choose><c:when test="${not empty param.searchText}">${param.searchText}</c:when><c:otherwise>weiﬂwurst</c:otherwise></c:choose>' />
+				<div>
+					<form:label path="searchText">
+						<spring:message code="search_text" text="?search_text?" />:</form:label>
+					<form:input path="searchText" tabindex="1" />
+				</div>
+				<form:errors path="searchText" cssClass="error" />
 			</div>
 			<div class="buttonrow">
-				<input id="submit" name="submit" type="submit"
-					value="<spring:message code='search'/>" tabindex="4" />
+				<input id="submit" name="submit" type="submit" value="<spring:message code='search_submit'  text='?search_submit?'/>" tabindex="2" />
 				<!-- onclick="launchSearch"  -->
 			</div>
-		</form>
+		</form:form>
+
 	</div>
 	<c:if test="${not empty param.searchText}">
 		<div class="displaytag">
 			<display:table id="recipe" name="recipes" sort="list" pagesize="20"
-				defaultsort="5" defaultorder="ascending" requestURI="">
+				defaultsort="1" defaultorder="ascending" requestURI="">
 				<!-- author, title, text  -->
 				<display:column titleKey="author" sortable="true">
 					<c:out value="${recipe.author}" />
